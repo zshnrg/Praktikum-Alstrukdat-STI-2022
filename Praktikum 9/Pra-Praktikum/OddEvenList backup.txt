@@ -1,0 +1,228 @@
+/*
+Nama        : Rozan Ghosani
+NIM         : 18221121
+Tanggal     : 6 November 2022
+Topik       : List Linier
+Deskripsi   : Implementasi OddEvenList.h
+*/
+
+#include <stdio.h>
+#include "OddEvenList.h"
+void sortList(List *L) {
+    address prec = Nil;
+    int loop = NbElmt(*L);
+    for (int i = 0; i < loop - 1; i++) {
+                                                    PrintInfo(*L);
+        address P = First(*L);
+        address precMin = Nil;
+        for (int j = 0; j < i; j++) {
+            P = Next(P);
+        }
+                                                    printf("-%d\n", Info(P));
+        address min = P;
+        while (Next(P) != Nil) {
+            if (Info(Next(P)) < Info(min)) {
+                precMin = P;
+                min = Next(precMin);
+            }
+            P = Next(P);
+        }
+                                                    printf(" | %d\n", Info(min));
+        if (precMin != Nil) {
+                                                    printf(" | %d | %d -> ", Info(precMin), Info(min));
+            Next(precMin) = Next(min);
+            if (prec == Nil) {
+                Next(min) = First(*L);
+                First(*L) = min;
+                                                    printf("%d\n", Info(First(*L)));
+            } else {
+                Next(min) = Next(prec);
+                Next(prec) = min;
+                                                    printf("%d\n", Info(prec));
+            }
+        } else if (prec != Nil && prec != min) {
+            Next(min) = Next(prec);
+            Next(prec) = min;
+        }
+        prec = min;
+    }
+}
+void sortList(List *L) {
+    List sorted; CreateEmpty(&sorted);
+    while (!IsEmpty(*L)) {
+        infotype max = Max(*L);
+        DelP(L, max);
+        InsVFirst(&sorted, max);
+    }
+    address P = First(sorted);
+    while (P != Nil) {
+        InsVLast(L, Info(P));
+        P = Next(P);
+    }
+}
+
+void OddEvenList(List L, List *Odd, List *Even) {
+    address P = First(L);
+    while (P != Nil) {
+        if (Info(P) % 2 == 0) {
+            InsVFirst(Even, Info(P));
+        } else {
+            InsVFirst(Odd, Info(P));
+        }
+        P = Next(P);
+    }
+    sortList(Odd);
+    sortList(Even);
+}
+
+void sortList(List *L) {
+    address prec = Nil, precMin = Nil;
+    for (int i = 0; i < NbElmt(*L); i++) {
+        address P = First(*L);
+        for (int j = 0; j < i; j++) {
+            P = Next(P);
+        }
+        address min = P;
+        while (Next(P) != Nil) {
+            if (Info(Next(P)) < Info(min)) {
+                precMin = P;
+                min = Next(precMin);
+            }
+            P = Next(P);
+        }
+        Next(precMin) = Next(min);
+        if (prec = Nil) {
+            Next(min) = First(*L);
+            First(*L) = min;
+            prec = min;
+        } else {
+            Next(prec) = min;
+            prec = min;
+        }
+    }
+}
+void sortList(List *L) {
+    address P;
+    if (!IsEmpty(*L)) {
+        List temp;
+        CreateEmpty(&temp);
+        address maxP = AdrMax(*L);
+        int i = 1;
+        while (i < NbElmt(*L)) {
+            address pPrev = First(*L);
+            P = First(*L);
+            while (P != maxP) {
+                pPrev = P;
+                P = Next(P);
+            }
+            if (P == pPrev) {
+                DelFirst(L, &maxP);
+            }
+            else {
+                DelAfter(L, &maxP, pPrev);
+            }
+            InsertFirst(&temp, maxP);
+            maxP = AdrMax(*L);
+        }
+        InsertFirst(&temp, maxP);
+        First(*L) = First(temp);
+    }
+}
+#include <stdlib.h>
+
+int main () {
+    List L, Odd, Even;
+    CreateEmpty(&L); CreateEmpty(&Odd); CreateEmpty(&Even);
+
+    for (int i = 0; i < 80; i++) {
+        InsVLast(&L, rand() % 111);
+    }
+    OddEvenList(L, &Odd, &Even);
+    PrintInfo(L); printf("\n");
+    PrintInfo(Odd); printf("\n");
+    PrintInfo(Even); printf("\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Nama        : Rozan Ghosani
+NIM         : 18221121
+Tanggal     : 6 November 2022
+Topik       : List Linier
+Deskripsi   : Implementasi OddEvenList.h
+*/
+
+#include <stdio.h>
+#include "OddEvenList.h"
+
+
+
+void OddEvenList(List L, List *Odd, List *Even) {
+    address P = First(L);
+    while (P != Nil) {
+        if (Info(P) % 2 == 0) {
+            InsVFirst(Even, Info(P));
+        } else {
+            InsVFirst(Odd, Info(P));
+        }
+        P = Next(P);
+    }
+
+    List tempOdd;
+    CreateEmpty(&tempOdd);
+    while (!IsEmpty(*Odd)) {
+        address P;
+        address max = AdrMax(*Odd);
+        address precMax = First(*Odd);
+        P = First(*Odd);
+        while (P != max) {
+            precMax = P;
+            P = Next(P);
+        }
+        if (P == precMax) {
+            DelFirst(Odd, &max);
+        } else {
+            DelAfter(Odd, &max, precMax);
+        }
+        InsertFirst(&tempOdd, max);
+    }
+    First(*Odd) = First(tempOdd);
+
+    List tempEven;
+    CreateEmpty(&tempEven);
+    while (!IsEmpty(*Even)) {
+        address P;
+        address max = AdrMax(*Even);
+        address precMax = First(*Even);
+        P = First(*Even);
+        while (P != max) {
+            precMax = P;
+            P = Next(P);
+        }
+        if (P == precMax) {
+            DelFirst(Even, &max);
+        } else {
+            DelAfter(Even, &max, precMax);
+        }
+        InsertFirst(&tempEven, max);
+    }
+    First(*L) = First(tempEven);
+}
