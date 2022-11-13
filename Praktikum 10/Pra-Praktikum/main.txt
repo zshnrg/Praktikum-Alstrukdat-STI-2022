@@ -1,0 +1,85 @@
+DRIVER LISTDP
+
+int main() {
+    List L;
+    CreateEmpty(&L);
+    PrintForward(L);
+    printf("TEST %d\n", IsEmpty(L));
+    for (int i = 0; i < 20; i++) {
+        InsVLast(&L, i);
+    }
+    printf("Done\n");
+    PrintBackward(L); printf("\n");
+    address P1 = Alokasi(99);
+    InsertFirst(&L, P1);
+    PrintForward(L); printf("\n");
+    address P2 = Alokasi(-777);
+    InsertAfter(&L, P2, P1);
+    PrintForward(L); printf("\n");
+    address P3 = Alokasi(123);
+    InsertBefore(&L, P3, P1);
+    PrintBackward(L); printf("\n");
+    address dump;
+    DelBefore(&L, &dump, P2);
+    PrintForward(L); printf("\n");
+    DelP(&L, 11);
+    PrintForward(L); printf("\n");
+    DelP(&L, 101);
+    PrintForward(L); printf("\n");
+    DelLast(&L, &dump);
+    DelFirst(&L, &dump);
+    PrintForward(L); printf("\n");
+    address Test = Search(L, 13);
+    InsertAfter(&L, Alokasi(1024), Test);
+    PrintForward(L); printf("\n");
+    infotype temp1, temp2;
+    DelVFirst(&L, &temp1);
+    DelVLast(&L, &temp2);
+    PrintForward(L); printf(" %d %d\n", temp1, temp2);
+    address KOKO = Alokasi(1990);
+    InsertLast(&L, KOKO);
+    InsertAfter(&L, Alokasi(100), KOKO);
+    PrintForward(L); printf("\n");
+}
+
+DRIVER LIST SIRKULER
+
+int main() {
+    List L;
+    CreateEmpty(&L);
+    PrintInfo(L);
+    printf("TEST %d\n", IsEmpty(L));
+    for (int i = 0; i < 20; i++) {
+        InsVLast(&L, i);
+    }
+    printf("Done\n");
+    PrintInfo(L); printf("\n");
+    address P1 = Alokasi(99);
+    InsertFirst(&L, P1);
+    PrintInfo(L); printf("\n");
+    address P2 = Alokasi(-777);
+    InsertAfter(&L, P2, P1);
+    PrintInfo(L); printf("\n");
+    address P3 = Alokasi(123);
+    PrintInfo(L); printf("\n");
+    address dump;
+    PrintInfo(L); printf("\n");
+    DelP(&L, 11);
+    PrintInfo(L); printf("\n");
+    DelP(&L, 101);
+    PrintInfo(L); printf("\n");
+    DelLast(&L, &dump);
+    DelFirst(&L, &dump);
+    PrintInfo(L); printf("\n");
+    address Test = Search(L, 13);
+    InsertAfter(&L, Alokasi(1024), Test);
+    PrintInfo(L); printf("\n");
+    infotype temp1, temp2;
+    DelVFirst(&L, &temp1);
+    DelVLast(&L, &temp2);
+    PrintInfo(L); printf(" %d %d\n", temp1, temp2);
+    address KOKO = Alokasi(1990);
+    InsertLast(&L, KOKO);
+    InsertAfter(&L, Alokasi(100), KOKO);
+    PrintInfo(L); printf("\n");
+}
