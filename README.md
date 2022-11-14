@@ -12,7 +12,7 @@ https://www.youtube.com/watch?v=2ybLD6_2gKM
 
 ** POV Program Main **
 
-Singkatnya pointer merupakan sebuah variabel yang menunjuk sebuah nilai. Jika sebuah fungsi mengharuskan parameternya sebuah pointer (ex: int *x) maka kamu harus mengirimkan address dari sebuah variabel ke dalam fungsi tersebut.
+Singkatnya pointer merupakan sebuah variabel yang menunjuk sebuah nilai. Jika sebuah fungsi mengharuskan parameternya sebuah pointer (ex: int *x) maka kamu harus mengirimkan address (ex: &x) dari sebuah variabel ke dalam fungsi tersebut.
 
 ** POV Program di Dalam Fungsi/Prosedur **
 
