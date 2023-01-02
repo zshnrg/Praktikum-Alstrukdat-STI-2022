@@ -20,6 +20,14 @@ Jika fungsi/prosedur yang kamu gunakan sudah memiliki parameter berupa pointer, 
 
 Mudahnya seperti itu :D
 
+## Cara compile program C
+Untuk compile program c, gunakan command di bawah ini (bisa digunakan untuk menggabungkan beberapa file body dari header adt yang digunakan)
+```ps
+gcc -o nama_executable main_program.c body_header1.c body_header2.c body_headerx.c
+```
+Nama file target executable jangan sampe lupa karna bisa bisa entar main program c nya ilang 😭.
+Untuk run programmnya bisa double click hasil executable atau ketik `./nama_executable` di terminal
+
 ## Also pointer in a nutshell
 <br>
 <img src="https://preview.redd.it/kh726uczjnq71.png?auto=webp&s=7d5f0ab136a52bd319a99edf1ef54a6dd244c940">
